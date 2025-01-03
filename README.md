@@ -233,5 +233,3 @@ This project is licensed under the MIT License. See the `LICENSE` file for detai
 - **pandas**: For making DataFrame operations seamless.
 
 ---
-
-This `README.md` provides a comprehensive guide to using the **LLMWorkbook** package, including installation, configuration, examples, and advanced usage documentation. You can adjust this further based on your specific package name and usage.

@@ -48,17 +48,10 @@ import pandas as pd
 from llmworkbook import LLMConfig, LLMRunner, LLMDataFrameIntegrator
 ```
 
-### **3. Create a Sample DataFrame**
+### **3. DataFrame**
 
 ```python
-data = {
-    "id": [1, 2, 3],
-    "prompt_text": [
-        "Explain Newton's first law in simple terms.",
-        "Write a short poem about the moon.",
-        "Give me 3 tips for better time management."
-    ]
-}
+# Provide a dataframe, the ususal
 df = pd.DataFrame(data)
 ```
 
@@ -111,7 +104,7 @@ Expected Output:
 The `LLMConfig` class allows you to configure your LLM provider and relevant settings.
 
 **Constructor Parameters:**
-- `provider_name` (str): Name of the LLM provider (e.g., `openai`, `azure_openai`, etc.).
+- `provider_name` (str): Name of the LLM provider (e.g., `openai`, `azure_openai`, etc.). **<- Works for OpenaAI only for now**
 - `api_key` (str): API key for the provider.
 - `model_name` (str, optional): Model name (e.g., `gpt-3.5-turbo`).
 - `system_prompt` (str, optional): System-level prompt to guide LLM behavior.

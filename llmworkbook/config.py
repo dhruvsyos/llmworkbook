@@ -11,10 +11,10 @@ class LLMConfig:
 
     def __init__(
         self, 
-        provider_name: str, 
-        api_key: str, 
-        model_name: Optional[str] = None,
-        system_prompt: Optional[str] = None, 
+        provider_name: str = "openai", 
+        api_key: Optional[str] = None, 
+        model_name: Optional[str] = "gpt-4o-mini",
+        system_prompt: Optional[str] = "You're an assistant, process the data for given prompt.", 
         temperature: float = 0.7,
         max_tokens: int = 1024,
         additional_params: Optional[Dict] = None

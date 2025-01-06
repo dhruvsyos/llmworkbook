@@ -4,6 +4,9 @@ Example usage script.
 
 import pandas as pd
 from llmworkbook import LLMConfig, LLMRunner, LLMDataFrameIntegrator
+from dotenv import load_dotenv
+
+load_dotenv()
 
 def main():
     # 1. Create a sample dataframe
@@ -20,7 +23,6 @@ def main():
     # 2. Create an LLM configuration
     config = LLMConfig(
         provider_name="openai",
-        api_key="OPENAI API KEY",
         model_name="gpt-4o-mini",
         system_prompt="Process these Data rows as per the provided prompt",
         temperature=1,

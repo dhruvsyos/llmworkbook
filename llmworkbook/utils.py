@@ -1,9 +1,12 @@
 """
 Additional utility functions for the llmworkbook package.
 """
-from functools import wraps
+
 import asyncio
+from functools import wraps
 from typing import Callable, Coroutine
+import nest_asyncio
+
 
 def sanitize_prompt(prompt: str) -> str:
     """
@@ -19,7 +22,7 @@ def sanitize_prompt(prompt: str) -> str:
     return prompt.strip()
 
 
-def sync_to_async(func : Coroutine) -> Callable :
+def sync_to_async(func: Coroutine) -> Callable:
     """
     A decorator to make an asynchronous function callable in a synchronous context.
 
@@ -29,6 +32,7 @@ def sync_to_async(func : Coroutine) -> Callable :
     Returns:
         callable: A function that can be called synchronously.
     """
+
     @wraps(func)
     def wrapper(*args, **kwargs):
         try:
@@ -38,11 +42,10 @@ def sync_to_async(func : Coroutine) -> Callable :
 
         if loop and loop.is_running():
             # If there's already an event loop running (e.g., in Jupyter Notebook)
-            import nest_asyncio
+
             nest_asyncio.apply()  # Apply patch for nested loops
             return loop.run_until_complete(func(*args, **kwargs))
-        else:
-            # If no loop is running, use asyncio.run
-            return asyncio.run(func(*args, **kwargs))
+        # If no loop is running, use asyncio.run
+        return asyncio.run(func(*args, **kwargs))
 
     return wrapper

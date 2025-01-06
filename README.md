@@ -19,43 +19,33 @@
 
 ## **Installation**
 
-Install the package from GitHub (or PyPI if published):
+Install the package from GitHub:
 
 ```bash
-pip install git+https://github.com/dhruvsyos/llmworkbook.git
+    pip install git+https://github.com/dhruvsyos/llmworkbook.git
 ```
 
 ---
 
 ## **Quick Start**
+Not updated regularly. Please check examples for more detailed code samples.
 
-### **1. Install Dependencies**
-Ensure you have the following dependencies installed:
-- `pandas`
-- `aiohttp`
-- (Optional) `openai` if you prefer using OpenAI's SDK instead of REST.
 
-You can install these via:
-
-```bash
-pip install pandas aiohttp openai
-```
-
-### **2. Import the Package**
+### **1. Import the Package**
 
 ```python
 import pandas as pd
 from llmworkbook import LLMConfig, LLMRunner, LLMDataFrameIntegrator
 ```
 
-### **3. DataFrame**
+### **2. DataFrame**
 
 ```python
 # Provide a dataframe, the ususal
 df = pd.DataFrame(data)
 ```
 
-### **4. Configure the LLM**
+### **3. Configure the LLM**
 
 ```python
 config = LLMConfig(
@@ -68,14 +58,14 @@ config = LLMConfig(
 )
 ```
 
-### **5. Create a Runner and Integrate**
+### **4. Create a Runner and Integrate**
 
 ```python
 runner = LLMRunner(config)
 integrator = LLMDataFrameIntegrator(runner=runner, df=df)
 ```
 
-### **6. Add LLM Responses to DataFrame**
+### **5. Add LLM Responses to DataFrame**
 
 ```python
 updated_df = integrator.add_llm_responses(
@@ -97,7 +87,10 @@ Expected Output:
 
 ---
 
+
+
 ## **Usage Documentation**
+Not updated regularly
 
 ### **`LLMConfig`**
 

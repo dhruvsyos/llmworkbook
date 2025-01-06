@@ -41,9 +41,9 @@ class LLMRunner:
         client = OpenAI(api_key=self.config.api_key or os.environ["OPENAAI_API_KEY"])
 
         completion = client.chat.completions.create(
-            model=self.config.model_name or "gpt-4o-mini",
+            model=self.config.options["model_name"] or "gpt-4o-mini",
             messages=messages,
-            temperature=self.config.temperature,
+            temperature=self.config.options["temperature"],
         )
 
         try:
@@ -61,7 +61,7 @@ class LLMRunner:
         Returns:
             str: The LLM response text.
         """
-        provider = self.config.provider_name.lower()
+        provider = self.config.provider.lower()
 
         if provider == "openai":
             return await self._call_llm_openai(prompt)

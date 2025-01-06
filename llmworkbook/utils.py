@@ -31,6 +31,7 @@ def sync_to_async(func: Coroutine) -> Callable:
     Returns:
         callable: A function that can be called synchronously.
     """
+
     @wraps(func)
     def wrapper(*args, **kwargs):
         try:

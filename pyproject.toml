@@ -15,6 +15,7 @@ pandas = "^2.2.3"
 asyncio = "^3.4.3"
 aiohttp = "^3.11.11"
 openai = "^1.59.3"
+python-dotenv = "^1.0.1"
 
 
 [build-system]

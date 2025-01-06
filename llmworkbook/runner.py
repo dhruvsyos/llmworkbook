@@ -2,10 +2,14 @@
 Runner module to handle the actual LLM call.
 """
 
-import asyncio
-import aiohttp
+import os
 from typing import Any, Dict, Optional
+
 from .config import LLMConfig
+from .utils import sync_to_async
+
+from openai import OpenAI
+
 
 class LLMRunner:
     """
@@ -32,14 +36,13 @@ class LLMRunner:
         Returns:
             str: The LLM response text.
         """
-        from openai import OpenAI
 
         messages = []
         if self.config.system_prompt:
             messages.append({"role": "system", "content": self.config.system_prompt})
         messages.append({"role": "user", "content": prompt})
 
-        client = OpenAI(api_key= self.config.api_key)
+        client = OpenAI(api_key= self.config.api_key or os.environ['OPENAAI_API_KEY'])
 
         completion = client.chat.completions.create(
             model= self.config.model_name or "gpt-4o-mini",
@@ -67,10 +70,10 @@ class LLMRunner:
         if provider == "openai":
             return await self._call_llm_openai(prompt)
         else:
-            # In a real package, you'd add more providers or raise a custom exception
             raise NotImplementedError(f"Provider {provider} is not supported yet.")
 
-    def run_sync(self, prompt: str) -> str:
+    @sync_to_async
+    async def run_sync(self, prompt: str) -> str:
         """
         Synchronous wrapper for simpler usage.
 
@@ -79,5 +82,5 @@ class LLMRunner:
 
         Returns:
             str: The LLM response text.
-        """
-        return self.run(prompt)
+        """ 
+        return await self.run(prompt)

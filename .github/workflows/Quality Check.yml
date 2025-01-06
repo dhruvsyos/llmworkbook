@@ -28,6 +28,7 @@ jobs:
       # Step 4: Install Dependencies
       - name: Install Project Dependencies
         run: |
+          poetry lock --no-update
           poetry install --no-root
           poetry run pip install pip-audit
 

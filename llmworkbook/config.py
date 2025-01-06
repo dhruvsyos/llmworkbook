@@ -14,7 +14,9 @@ class LLMConfig:
         self,
         provider: str = "openai",
         api_key: Optional[str] = None,
-        system_prompt: Optional[str] = "You're an assistant, process the data for given prompt.",
+        system_prompt: Optional[
+            str
+        ] = "You're an assistant, process the data for given prompt.",
         options: Optional[Dict[str, Optional[float]]] = None,
     ) -> None:
         """

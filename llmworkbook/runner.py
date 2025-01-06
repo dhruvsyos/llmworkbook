@@ -1,6 +1,7 @@
 """
 Runner module to handle the actual LLM call.
 """
+
 import os
 
 from openai import OpenAI
@@ -31,7 +32,6 @@ class LLMRunner:
         Returns:
             str: The LLM response text.
         """
-        from openai import OpenAI
 
         messages = []
         if self.config.system_prompt:
@@ -67,7 +67,8 @@ class LLMRunner:
             return await self._call_llm_openai(prompt)
         raise NotImplementedError(f"Provider {provider} is not supported yet.")
 
-    def run_sync(self, prompt: str) -> str:
+    @sync_to_async
+    async def run_sync(self, prompt: str) -> str:
         """
         Synchronous wrapper for simpler usage.
 

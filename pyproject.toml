@@ -15,7 +15,13 @@ pandas = "^2.2.3"
 asyncio = "^3.4.3"
 aiohttp = "^3.11.11"
 openai = "^1.59.3"
+python-dotenv = "^1.0.1"
+nest-asyncio = "^1.6.0"
 
+[tool.poetry.dev-dependencies]
+pylint = "^3.3.3"
+ruff = "^0.8.6"
+black = "^24.10.0"
 
 [build-system]
 requires = ["poetry-core"]

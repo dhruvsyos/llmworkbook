@@ -55,7 +55,6 @@ class LLMDataFrameIntegrator:
             row_indices = row_filter
 
         if async_mode:
-            # If we want an example of parallelization, we could gather tasks
             return self._run_async_prompts(row_indices, prompt_column, response_column)
 
         for idx in row_indices:

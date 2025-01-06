@@ -4,6 +4,9 @@ Example usage script.
 
 import pandas as pd
 from llmworkbook import LLMConfig, LLMRunner, LLMDataFrameIntegrator
+from dotenv import load_dotenv
+
+load_dotenv()
 
 def main():
     # 1. Create a sample dataframe

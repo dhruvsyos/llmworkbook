@@ -4,7 +4,6 @@ Additional utility functions for the llmworkbook package.
 import asyncio
 from functools import wraps
 from typing import Callable, Coroutine
-
 import nest_asyncio
 
 
@@ -32,7 +31,6 @@ def sync_to_async(func: Coroutine) -> Callable:
     Returns:
         callable: A function that can be called synchronously.
     """
-
     @wraps(func)
     def wrapper(*args, **kwargs):
         try:

@@ -19,11 +19,13 @@ def main():
 
     # 2. Create an LLM configuration
     config = LLMConfig(
-        provider_name="openai",
-        api_key="OPENAI API KEY",
-        model_name="gpt-4o-mini",
+        provider="openai",
         system_prompt="Process these Data rows as per the provided prompt",
-        temperature=1,
+        options={
+            "model_name": "gpt-4o-mini",
+            "temperature": 1,
+            "max_tokens": 1024,
+        },
     )
 
     # 3. Instantiate the runner and the integrator

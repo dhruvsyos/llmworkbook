@@ -1,11 +1,13 @@
 """
 Runner module to handle the actual LLM call.
 """
+import os
 
-import asyncio
-import aiohttp
-from typing import Any, Dict, Optional
+from openai import OpenAI
+
 from .config import LLMConfig
+from .utils import sync_to_async
+
 
 class LLMRunner:
     """
@@ -19,10 +21,7 @@ class LLMRunner:
         """
         self.config = config
 
-    async def _call_llm_openai(
-        self, 
-        prompt: str
-    ) -> str:
+    async def _call_llm_openai(self, prompt: str) -> str:
         """
         Calls OpenAI's completion/chat endpoint asynchronously.
 
@@ -39,10 +38,10 @@ class LLMRunner:
             messages.append({"role": "system", "content": self.config.system_prompt})
         messages.append({"role": "user", "content": prompt})
 
-        client = OpenAI(api_key= self.config.api_key)
+        client = OpenAI(api_key=self.config.api_key or os.environ["OPENAAI_API_KEY"])
 
         completion = client.chat.completions.create(
-            model= self.config.model_name or "gpt-4o-mini",
+            model=self.config.model_name or "gpt-4o-mini",
             messages=messages,
             temperature=self.config.temperature,
         )
@@ -50,7 +49,7 @@ class LLMRunner:
         try:
             return completion.choices[0].message
         except (KeyError, IndexError):
-                return str(completion)
+            return str(completion)
 
     async def run(self, prompt: str) -> str:
         """
@@ -66,9 +65,7 @@ class LLMRunner:
 
         if provider == "openai":
             return await self._call_llm_openai(prompt)
-        else:
-            # In a real package, you'd add more providers or raise a custom exception
-            raise NotImplementedError(f"Provider {provider} is not supported yet.")
+        raise NotImplementedError(f"Provider {provider} is not supported yet.")
 
     def run_sync(self, prompt: str) -> str:
         """
@@ -80,4 +77,4 @@ class LLMRunner:
         Returns:
             str: The LLM response text.
         """
-        return self.run(prompt)
+        return await self.run(prompt)

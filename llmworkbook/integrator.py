@@ -2,8 +2,11 @@
 Integrator module to combine LLM responses and DataFrames.
 """
 
-import pandas as pd
 from typing import Optional, List, Union
+
+import asyncio
+import pandas as pd
+
 from .runner import LLMRunner
 
 
@@ -26,15 +29,18 @@ class LLMDataFrameIntegrator:
         prompt_column: str,
         response_column: str = "llm_response",
         row_filter: Optional[List[int]] = None,
-        async_mode: bool = False
+        async_mode: bool = False,
     ) -> pd.DataFrame:
         """
-        Runs the LLM on each row's `prompt_column` text and stores the response in `response_column`.
+        Runs the LLM on each row's `prompt_column` text and stores the response in
+        `response_column`.
 
         Args:
             prompt_column (str): The column in the DataFrame containing prompt text.
-            response_column (str, optional): The name of the column to store LLM responses. Defaults to "llm_response".
-            row_filter (List[int], optional): Subset of row indices to run. If None, runs on all rows.
+            response_column (str, optional): The name of the column to store LLM responses.
+                                            Defaults to "llm_response".
+            row_filter (List[int], optional): Subset of row indices to run.
+                                            If None, runs on all rows.
             async_mode (bool, optional): If True, uses async calls to LLM. Otherwise uses sync.
 
         Returns:
@@ -51,27 +57,34 @@ class LLMDataFrameIntegrator:
         if async_mode:
             # If we want an example of parallelization, we could gather tasks
             return self._run_async_prompts(row_indices, prompt_column, response_column)
-        else:
-            # Synchronous approach
-            for idx in row_indices:
-                prompt_value = self.df.at[idx, prompt_column]
-                if prompt_value:
-                    response = self.runner.run_sync(str(prompt_value))
-                    self.df.at[idx, response_column] = response
 
+        for idx in row_indices:
+            prompt_value = self.df.at[idx, prompt_column]
+            if prompt_value:
+                response = self.runner.run_sync(str(prompt_value))
+                self.df.at[idx, response_column] = response
+        return self.df
+
+    def reset_responses(self, response_column: str = "llm_response") -> pd.DataFrame:
+        """
+        Resets the response column in the DataFrame by setting it to None.
+
+        Args:
+            response_column (str, optional): The name of the column to reset.
+
+        Returns:
+            pd.DataFrame: The updated DataFrame with the response column reset.
+        """
+        if response_column in self.df.columns:
+            self.df[response_column] = None
         return self.df
 
     def _run_async_prompts(
-        self,
-        row_indices: List[int],
-        prompt_column: str,
-        response_column: str
+        self, row_indices: List[int], prompt_column: str, response_column: str
     ) -> pd.DataFrame:
         """
         Helper method that runs LLM calls asynchronously in parallel.
         """
-
-        import asyncio
 
         async def process_row(idx: Union[int, str]) -> None:
             prompt_value = self.df.at[idx, prompt_column]

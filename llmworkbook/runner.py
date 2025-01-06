@@ -32,39 +32,25 @@ class LLMRunner:
         Returns:
             str: The LLM response text.
         """
-        import os
+        from openai import OpenAI
 
-        # You might want to install openai or call the REST endpoint with your own logic
-        # We'll do a sample approach with REST for demonstration
-        openai_api_url = "https://api.openai.com/v1/chat/completions"
-        headers = {
-            "Content-Type": "application/json",
-            "Authorization": f"Bearer {self.config.api_key}"
-        }
-
-        # Build the chat request body
-        # For chat completions, we pass 'system' and 'user' messages
         messages = []
         if self.config.system_prompt:
             messages.append({"role": "system", "content": self.config.system_prompt})
         messages.append({"role": "user", "content": prompt})
 
-        payload = {
-            "model": self.config.model_name or "gpt-3.5-turbo",
-            "messages": messages,
-            "max_tokens": self.config.max_tokens,
-            "temperature": self.config.temperature,
-            **self.config.additional_params
-        }
+        client = OpenAI(api_key= self.config.api_key)
 
-        async with aiohttp.ClientSession() as session:
-            async with session.post(openai_api_url, json=payload, headers=headers, timeout=60) as resp:
-                resp_json = await resp.json()
-                # The response structure can vary, but typically you can parse out the text like below
-                try:
-                    return resp_json["choices"][0]["message"]["content"]
-                except (KeyError, IndexError):
-                    return str(resp_json)
+        completion = client.chat.completions.create(
+            model= self.config.model_name or "gpt-4o-mini",
+            messages=messages,
+            temperature=self.config.temperature,
+        )
+
+        try:
+            return completion.choices[0].message
+        except (KeyError, IndexError):
+                return str(completion)
 
     async def run(self, prompt: str) -> str:
         """
@@ -94,4 +80,4 @@ class LLMRunner:
         Returns:
             str: The LLM response text.
         """
-        return asyncio.run(self.run(prompt))
+        return self.run(prompt)

@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "llmworkbook"
+version = "0.1.0"
+description = "\"LLM + DataFrame integration package with Poetry\""
+authors = ["dhruv <dhruv166arya@gmail.com>"]
+license = "\"MIT\""
+readme = "README.md"
+homepage = "https://github.com/dhruvsyos/llmworkbook.git"
+repository = "https://github.com/dhruvsyos/llmworkbook.git"
+keywords = ["LLM", "DataFrame", "Excel Workbook", "Excel", "CSV", "OpenAI" ,  "Python", "async"]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+pandas = "^2.2.3"
+asyncio = "^3.4.3"
+aiohttp = "^3.11.11"
+openai = "^1.59.3"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

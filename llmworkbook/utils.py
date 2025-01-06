@@ -1,6 +1,7 @@
 """
 Additional utility functions for the llmworkbook package.
 """
+
 import asyncio
 from functools import wraps
 from typing import Callable, Coroutine

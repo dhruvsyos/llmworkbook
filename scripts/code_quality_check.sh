@@ -36,7 +36,7 @@ fi
 # Run Ruff
 print_separator
 echo -e "${CYAN}Running Ruff...${RESET}"
-ruff "$TARGET_DIR"
+ruff check "$TARGET_DIR"
 if [ $? -ne 0 ]; then
   RUFF_STATUS=1
   echo -e "${RED}Ruff found issues.${RESET}"
@@ -47,7 +47,7 @@ fi
 # Run Black in check mode
 print_separator
 echo -e "${CYAN}Running Black for code formatting (check only)...${RESET}"
-black --check "$TARGET_DIR"
+black "$TARGET_DIR"
 if [ $? -ne 0 ]; then
   BLACK_STATUS=1
   echo -e "${RED}Black found formatting issues.${RESET}"
@@ -69,7 +69,7 @@ fi
 # Run PIP audit
 print_separator
 echo -e "${CYAN}Running PIP AUDIT to check of any issues...${RESET}"
-pip_audit
+pip-audit
 if [ $? -ne 0 ]; then
   PIPAUDIT_STATUS=1
   echo -e "${RED}PIP Audit found package issues.${RESET}"

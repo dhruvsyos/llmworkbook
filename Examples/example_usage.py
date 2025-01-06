@@ -20,11 +20,10 @@ def main():
     # 2. Create an LLM configuration
     config = LLMConfig(
         provider_name="openai",
-        api_key="YOUR_API_KEY",  # Replace with real key
-        model_name="gpt-3.5-turbo",
-        system_prompt="You are a helpful assistant.",
-        temperature=0.5,
-        max_tokens=1000
+        api_key="OPENAI API KEY",
+        model_name="gpt-4o-mini",
+        system_prompt="Process these Data rows as per the provided prompt",
+        temperature=1,
     )
 
     # 3. Instantiate the runner and the integrator
@@ -35,7 +34,7 @@ def main():
     updated_df = integrator.add_llm_responses(
         prompt_column="prompt_text",
         response_column="llm_response",
-        async_mode=False
+        async_mode=True
     )
 
     print("DataFrame with LLM responses:\n", updated_df)

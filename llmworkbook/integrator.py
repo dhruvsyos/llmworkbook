@@ -26,7 +26,7 @@ class LLMDataFrameIntegrator:
 
     def add_llm_responses(
         self,
-        prompt_column: str,
+        prompt_column: str = "prompt_column",
         response_column: str = "llm_response",
         row_filter: Optional[List[int]] = None,
         async_mode: bool = False,

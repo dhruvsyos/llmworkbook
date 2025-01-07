@@ -17,6 +17,7 @@ aiohttp = "^3.11.11"
 openai = "^1.59.3"
 python-dotenv = "^1.0.1"
 nest-asyncio = "^1.6.0"
+openpyxl = "^3.1.5"
 
 [poetry.group.dev.dependencies]
 pylint = "^3.3.3"

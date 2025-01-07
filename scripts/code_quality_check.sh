@@ -36,7 +36,7 @@ fi
 # Run Ruff
 print_separator
 echo -e "${CYAN}Running Ruff...${RESET}"
-ruff check "$TARGET_DIR"
+poetry run ruff check "$TARGET_DIR"
 if [ $? -ne 0 ]; then
   RUFF_STATUS=1
   echo -e "${RED}Ruff found issues.${RESET}"
@@ -47,7 +47,7 @@ fi
 # Run Black in check mode
 print_separator
 echo -e "${CYAN}Running Black for code formatting (check only)...${RESET}"
-black "$TARGET_DIR"
+poetry run black "$TARGET_DIR"
 if [ $? -ne 0 ]; then
   BLACK_STATUS=1
   echo -e "${RED}Black found formatting issues.${RESET}"
@@ -58,7 +58,7 @@ fi
 # Run Pylint
 print_separator
 echo -e "${CYAN}Running Pylint on Python files in '$TARGET_DIR'...${RESET}"
-pylint "$TARGET_DIR"/**/*.py > pylint_report.txt
+poetry run pylint "$TARGET_DIR"/**/*.py > pylint_report.txt
 if [ $? -ne 0 ]; then
   PYLINT_STATUS=1
   echo -e "${RED}Pylint encountered errors. Check pylint_report.txt.${RESET}"
@@ -69,7 +69,7 @@ fi
 # Run PIP audit
 print_separator
 echo -e "${CYAN}Running PIP AUDIT to check of any issues...${RESET}"
-pip-audit
+poetry run pip-audit
 if [ $? -ne 0 ]; then
   PIPAUDIT_STATUS=1
   echo -e "${RED}PIP Audit found package issues.${RESET}"

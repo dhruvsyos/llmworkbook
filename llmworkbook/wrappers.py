@@ -37,14 +37,12 @@ class BaseLLMWrapper(ABC):
         """
         Return a DataFrame containing only the data columns to be wrapped.
         """
-        pass
 
     @abstractmethod
     def _get_prompt_series(self) -> Series:
         """
         Return a single-column Series of prompt data.
         """
-        pass
 
     def _wrap_data_row(self, row: Series) -> str:
         """
@@ -234,7 +232,9 @@ class WrapDataArray(BaseLLMWrapper):
             arr = np.array(arr, dtype=object)
 
         if len(arr.shape) != 2:
-            raise ValueError("Input arr must be a 2D structure (e.g., rows and columns).")
+            raise ValueError(
+                "Input arr must be a 2D structure (e.g., rows and columns)."
+            )
 
         self.arr = arr
         self.prompt_index = prompt_index
@@ -255,7 +255,7 @@ class WrapDataArray(BaseLLMWrapper):
         """
         num_columns = self.arr.shape[1]
 
-        if not (0 <= self.prompt_index < num_columns):
+        if not 0 <= self.prompt_index < num_columns:
             raise IndexError(
                 f"Prompt index {self.prompt_index} is out of bounds "
                 f"for an array with {num_columns} columns."
@@ -272,7 +272,9 @@ class WrapDataArray(BaseLLMWrapper):
         Return a DataFrame of only the data columns to wrap, excluding the prompt column.
         """
         # Drop the prompt column from the DataFrame
-        data_df = self.temp_df.drop(columns=[f"col_{self.prompt_index}"], errors="ignore")
+        data_df = self.temp_df.drop(
+            columns=[f"col_{self.prompt_index}"], errors="ignore"
+        )
 
         # If the user specified data_indices, keep only those columns
         if self.data_indices:

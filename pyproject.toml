@@ -18,16 +18,16 @@ openai = "^1.59.3"
 python-dotenv = "^1.0.1"
 nest-asyncio = "^1.6.0"
 openpyxl = "^3.1.5"
-pytest = "^8.3.4"
-pytest-mock = "^3.14.0"
-coverage = "^7.6.10"
-pytest-asyncio = "^0.25.2"
 
 [poetry.group.dev.dependencies]
 pylint = "^3.3.3"
 ruff = "^0.8.6"
 black = "^24.10.0"
 pip-audit = "^2.7.3"
+pytest = "^8.3.4"
+pytest-mock = "^3.14.0"
+coverage = "^7.6.10"
+pytest-asyncio = "^0.25.2"
 
 [build-system]
 requires = ["poetry-core"]

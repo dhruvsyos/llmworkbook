@@ -21,6 +21,7 @@ openpyxl = "^3.1.5"
 pytest = "^8.3.4"
 pytest-mock = "^3.14.0"
 coverage = "^7.6.10"
+pytest-asyncio = "^0.25.2"
 
 [poetry.group.dev.dependencies]
 pylint = "^3.3.3"

@@ -38,7 +38,7 @@ class LLMRunner:
             messages.append({"role": "system", "content": self.config.system_prompt})
         messages.append({"role": "user", "content": prompt})
 
-        client = OpenAI(api_key=self.config.api_key or os.environ["OPENAAI_API_KEY"])
+        client = OpenAI(api_key=self.config.api_key or os.environ["OPENAI_API_KEY"])
 
         completion = client.chat.completions.create(
             model=self.config.options["model_name"] or "gpt-4o-mini",

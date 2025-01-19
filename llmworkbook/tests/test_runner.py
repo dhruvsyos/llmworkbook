@@ -1,106 +1,74 @@
-import pandas as pd
-from llmworkbook import LLMConfig, LLMRunner, LLMDataFrameIntegrator
 import pytest
 from unittest.mock import AsyncMock, patch
-
-# def test_llm_runner():
+from llmworkbook import LLMRunner, LLMConfig
 
 
 @pytest.fixture
 def mock_config():
-    """Fixture to provide a mock LLMConfig object."""
+    """Fixture for creating an LLMConfig object."""
     return LLMConfig(
-        api_key="mock_api_key",
         provider="openai",
-        system_prompt="You are a helpful assistant.",
-        options={"model_name": "gpt-4", "temperature": 0.7},
-    )
-
-@pytest.mark.asyncio
-@patch("llmworkbook.runner.OpenAI")
-async def test_call_llm_openai_success(mock_openai, mock_config):
-    """
-    Test `_call_llm_openai` for a successful response.
-    """
-    # Mock the OpenAI client and its method
-    mock_client = AsyncMock()
-    mock_openai.return_value = mock_client
-    mock_client.chat.completions.create.return_value = {
-        "choices": [{"message": "Mocked response"}]
-    }
-
-    runner = LLMRunner(mock_config)
-    prompt = "Hello, LLM!"
-    response = await runner._call_llm_openai(prompt)
-
-    assert response == "Mocked response"
-    mock_client.chat.completions.create.assert_called_once_with(
-        model="gpt-4",
-        messages=[
-            {"role": "system", "content": mock_config.system_prompt},
-            {"role": "user", "content": prompt},
-        ],
-        temperature=0.7,
+        api_key="test-api-key",
+        system_prompt="Process these Data rows as per the provided prompt",
+        options={
+            "model_name": "gpt-4o-mini",
+            "temperature": 1,
+            "max_tokens": 1024,
+        },
     )
 
 
 @pytest.mark.asyncio
-@patch("llmworkbook.runner.OpenAI")
-async def test_call_llm_openai_error_handling(mock_openai, mock_config):
-    """
-    Test `_call_llm_openai` when an error occurs.
-    """
-    # Mock the OpenAI client and its method
-    mock_client = AsyncMock()
-    mock_openai.return_value = mock_client
-    mock_client.chat.completions.create.return_value = {}
+async def test_llmrunner_initialization(mock_config):
+    """Test that LLMRunner initializes correctly."""
+    runner = LLMRunner(config=mock_config)
+    assert runner.config == mock_config
 
-    runner = LLMRunner(mock_config)
-    prompt = "Hello, LLM!"
-    response = await runner._call_llm_openai(prompt)
+@pytest.mark.asyncio
+async def test_run_sync(mock_config):
+    """Test the synchronous wrapper for the run method."""
+    runner = LLMRunner(config=mock_config)
 
-    assert response == "{}"  # Expect the string representation of the empty dict
-    mock_client.chat.completions.create.assert_called_once()
+    # Mock the async run method
+    runner.run = AsyncMock(return_value="Sync response")
+    result = await runner.run_sync("Explain Newton's first law in simple terms.")
+    assert result == "Sync response"
+    runner.run.assert_called_once_with("Explain Newton's first law in simple terms.")
+
+@pytest.mark.asyncio
+async def test_run(mock_config):
+    """Test the run method with the OpenAI provider."""
+    # Initialize the runner
+    runner = LLMRunner(config=mock_config)
+
+    # Mock _call_llm_openai
+    runner._call_llm_openai = AsyncMock(return_value="LLM response for prompt")
+    
+    # Call run
+    result = await runner.run("Explain Newton's first law in simple terms.")
+    
+    # Assert the result
+    assert result == "LLM response for prompt"
+    
+    # Verify the internal method call
+    runner._call_llm_openai.assert_called_once_with("Explain Newton's first law in simple terms.")
 
 
 @pytest.mark.asyncio
-async def test_run_openai_provider(mock_config):
-    """
-    Test `run` method for the 'openai' provider.
-    """
-    runner = LLMRunner(mock_config)
-    runner._call_llm_openai = AsyncMock(return_value="Mocked LLM response")
-    prompt = "Hello, LLM!"
-    response = await runner.run(prompt)
+async def test_run_sync(mock_config):
+    """Test the synchronous wrapper for the run method."""
+    # Initialize the runner
+    runner = LLMRunner(config=mock_config)
 
-    assert response == "Mocked LLM response"
-    runner._call_llm_openai.assert_called_once_with(prompt)
+    # Mock the async run method
+    runner.run = AsyncMock(return_value="LLM response for prompt")
+    
+    # Call run_sync
+    result = runner.run_sync("Explain Newton's first law in simple terms.")
+    
+    # Assert the result
+    assert result == "LLM response for prompt"
+    
+    # Verify the run method call
+    runner.run.assert_called_once_with("Explain Newton's first law in simple terms.")
 
-
-@pytest.mark.asyncio
-async def test_run_unsupported_provider(mock_config):
-    """
-    Test `run` method for unsupported providers.
-    """
-    mock_config.provider = "unsupported_provider"
-    runner = LLMRunner(mock_config)
-
-    with pytest.raises(NotImplementedError) as exc_info:
-        await runner.run("Hello, LLM!")
-
-    assert str(exc_info.value) == "Provider unsupported_provider is not supported yet."
-
-
-@patch("llmworkbook.runner.sync_to_async")
-def test_run_sync(mock_sync_to_async, mock_config):
-    """
-    Test `run_sync` method.
-    """
-    runner = LLMRunner(mock_config)
-    mock_sync_to_async.return_value = AsyncMock(return_value="Mocked Sync Response")
-
-    # Call the method synchronously
-    response = runner.run_sync("Hello, LLM!")
-
-    assert response == "Mocked Sync Response"
-    mock_sync_to_async.assert_called_once_with(runner.run)

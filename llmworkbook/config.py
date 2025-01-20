@@ -5,7 +5,7 @@ Configuration module for LLMs.
 from typing import Optional, Dict
 
 
-class LLMConfig:
+class LLMConfig: # pylint: disable=too-few-public-methods
     """
     LLM configuration object to store various LLM parameters.
     """
@@ -57,9 +57,3 @@ class LLMConfig:
             "system_prompt": self.system_prompt,
             "options": self.options,
         }
-
-    def __repr__(self) -> str:
-        return (
-            f"LLMConfig(provider={self.provider}, "
-            f"options={self.options}, system_prompt={self.system_prompt})"
-        )

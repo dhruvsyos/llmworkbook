@@ -68,26 +68,25 @@ async def test_provider():
     with pytest.raises(NotImplementedError):
         await LLMRunner(config=LLMConfig(provider="llmprovider")).run("prompt")
 
-
 @pytest.mark.asyncio
 async def test_call_llm_openai(mock_config):
     """Test the _call_llm_openai method with mocked OpenAI response."""
     # Create an instance of LLMRunner with the mock configuration
     runner = LLMRunner(config=mock_config)
 
-    # Mocked response from OpenAI API
+    # Mock response data format from OpenAI API
     mock_response = AsyncMock()
-    mock_response.choices = [{"message": {"content": "Mocked response text"}}]
+    mock_response.choices = [{"message":"Mocked response text"}]
 
-    # Patch the OpenAI client's chat completion method correctly
-    with patch("openai.OpenAI.chat.completions.create", return_value=mock_response):
-        
+    # Patch the specific OpenAI method instead of the entire class
+    with patch("openai.resources.chat.completions.Completions.create", return_value=mock_response) as mock_create:
         # Call the async function
         response = await runner._call_llm_openai("Test prompt")
 
+
         # Assertions to check the behavior
         assert response == "Mocked response text"
-        OpenAI.chat.completions.create.assert_called_once_with(
+        mock_create.assert_called_once_with(
             model="gpt-4o-mini",
             messages=[
                 {"role": "system", "content": mock_config.system_prompt},

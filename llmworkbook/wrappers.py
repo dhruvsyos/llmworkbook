@@ -279,11 +279,6 @@ class WrapDataArray(BaseLLMWrapper):
         # If the user specified data_indices, keep only those columns
         if self.data_indices:
             data_col_names = [f"col_{idx}" for idx in self.data_indices]
-            missing_cols = set(data_col_names) - set(data_df.columns)
-            if missing_cols:
-                raise InvalidColumnName(
-                    f"Some indices {missing_cols} are missing from the array's columns."
-                )
             data_df = data_df[data_col_names]
 
         return data_df

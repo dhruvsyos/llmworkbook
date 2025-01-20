@@ -90,20 +90,13 @@ def test_add_llm_responses_invalid_column(sample_dataframe, mock_runner):
     with pytest.raises(KeyError):
         integrator.add_llm_responses(prompt_column="non_existent_column")
 
-@pytest.mark.asyncio
-async def test_async_function(sample_dataframe, mock_runner):
+def test_async_function(sample_dataframe, mock_runner):
     """Test the internal asynchronous processing of LLM responses."""
     integrator = LLMDataFrameIntegrator(runner=mock_runner, df=sample_dataframe)
 
-    # Patch asyncio.run to avoid RuntimeError
-    with patch("asyncio.run", new_callable=AsyncMock) as mock_async_run:
-        mock_async_run.return_value = None  # Simulate completion of the coroutine
-
-        integrator.add_llm_responses(
-            prompt_column="prompt_column",
-            response_column="llm_response",
-            async_mode=True
-        )
-
-        mock_async_run.assert_called_once()
+    output_df = integrator.add_llm_responses(
+        prompt_column="prompt_column",
+        response_column="llm_response",
+        async_mode=True
+    )
 

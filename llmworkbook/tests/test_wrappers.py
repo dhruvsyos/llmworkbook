@@ -15,7 +15,7 @@ def sample_dataframe():
     }
 
 def test_transform_and_export_csv(sample_dataframe):
-    df = pd.DataFrame(sample_data)
+    df = pd.DataFrame(sample_dataframe)
     wrapper = WrapDataFrame(df, prompt_column="prompt", data_columns=["Reviews", "Language"])
     
     with patch.object(pd.DataFrame, "to_csv") as mock_to_csv:
@@ -23,7 +23,7 @@ def test_transform_and_export_csv(sample_dataframe):
         mock_to_csv.assert_called_once_with("test_output.csv", index=False)
 
 def test_transform_and_export_json(sample_dataframe):
-    df = pd.DataFrame(sample_data)
+    df = pd.DataFrame(sample_dataframe)
     wrapper = WrapDataFrame(df, prompt_column="prompt", data_columns=["Reviews", "Language"])
     
     with patch.object(pd.DataFrame, "to_json") as mock_to_json:
@@ -31,7 +31,7 @@ def test_transform_and_export_json(sample_dataframe):
         mock_to_json.assert_called_once_with("test_output.json", orient="records")
 
 def test_transform_and_export_excel(sample_dataframe):
-    df = pd.DataFrame(sample_data)
+    df = pd.DataFrame(sample_dataframe)
     wrapper = WrapDataFrame(df, prompt_column="prompt", data_columns=["Reviews", "Language"])
     
     with patch.object(pd.DataFrame, "to_excel") as mock_to_excel:
@@ -39,14 +39,14 @@ def test_transform_and_export_excel(sample_dataframe):
         mock_to_excel.assert_called_once_with("test_output.xlsx", index=False, engine="openpyxl")
 
 def test_transform_and_export_invalid_format(sample_dataframe):
-    df = pd.DataFrame(sample_data)
+    df = pd.DataFrame(sample_dataframe)
     wrapper = WrapDataFrame(df, prompt_column="prompt", data_columns=["Reviews", "Language"])
     
     with pytest.raises(ValueError, match="Unsupported file format"):
         wrapper.transform_and_export("test_output.xml", "xml")
 
 def test_preview(sample_dataframe):
-    df = pd.DataFrame(sample_data)
+    df = pd.DataFrame(sample_dataframe)
     wrapper = WrapDataFrame(df, prompt_column="prompt", data_columns=["Reviews", "Language"])
     
     wrapper.preview(1)
@@ -56,7 +56,7 @@ def test_preview(sample_dataframe):
     assert output == ""
 
 def test_wrap_dataframe(sample_dataframe):
-    df = pd.DataFrame(sample_data)
+    df = pd.DataFrame(sample_dataframe)
     wrapper = WrapDataFrame(df, prompt_column="prompt", data_columns=["Reviews", "Language"])
     
     # Act
@@ -75,7 +75,7 @@ def test_wrap_dataframe(sample_dataframe):
     assert wrapped_df.iloc[0, 0] == expected_first_row
 
 def test_wrap_dataframe_invalid_column(sample_dataframe):
-    df = pd.DataFrame(sample_data)
+    df = pd.DataFrame(sample_dataframe)
     #Test data column
     with pytest.raises(InvalidColumnName):
         WrapDataFrame(df, prompt_column="prompt", data_columns=["not_existing_col", "Language"])

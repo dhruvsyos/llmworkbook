@@ -98,3 +98,5 @@ updated_df = integrator.add_llm_responses(
 - Implement rate-limiting and token usage tracking.
 - Add streaming response handling.
 - Publish as a PyPI package for easy installation.
+- Add CLI method for developers
+- Add an interface frontend for low code applications

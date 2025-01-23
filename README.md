@@ -1,7 +1,3 @@
-Here’s the updated README with a new section introducing the **wrapper usage** in `LLMWorkbook`:
-
----
-
 # **LLMWorkbook**
 
 > [!WARNING]

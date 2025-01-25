@@ -23,7 +23,7 @@
 Install the package from GitHub:
 
 ```bash
-    pip install git+https://github.com/dhruvsyos/llmworkbook.git
+    pip install llmworkbook
 ```
 
 ---
@@ -59,12 +59,13 @@ df = pd.DataFrame(data)
 
 ```python
 config = LLMConfig(
-    provider_name="openai",
-    api_key="YOUR_API_KEY",  # Replace with your API key
-    model_name="gpt-3.5-turbo",
-    system_prompt="You are a helpful assistant.",
-    temperature=0.7,
-    max_tokens=1000
+    provider="openai",
+    system_prompt="Process these Data rows as per the provided prompt",
+    options={
+        "model_name": "gpt-4o-mini",
+        "temperature": 1,
+        "max_tokens": 1024,
+    },
 )
 ```
 
@@ -86,6 +87,8 @@ updated_df = integrator.add_llm_responses(
 
 ```
 
+Example code is available in the Git Repository for easy reference.
+
 ---
 
 ## **Future Roadmap**
@@ -93,6 +96,6 @@ updated_df = integrator.add_llm_responses(
 - Add support for more LLM providers (Azure OpenAI, Cohere, etc.).
 - Implement rate-limiting and token usage tracking.
 - Add streaming response handling.
-- Publish as a PyPI package for easy installation.
-- Add CLI method for developers
-- Add an interface frontend for low code applications
+- Add CLI method for developers.
+- Add an interface frontend for low code applications.
+- Summarized history persisted across session to provide quick context for next session.

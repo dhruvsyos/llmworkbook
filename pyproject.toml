@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "llmworkbook"
-version = "0.1.0"
-description = "\"LLM + DataFrame integration package \""
+version = "0.1.2"
+description = "\"LLM + Excel or DataFrame integration package \""
 authors = ["dhruv <dhruv166arya@gmail.com>"]
 license = "\"MIT\""
 readme = "README.md"

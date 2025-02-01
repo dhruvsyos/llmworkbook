@@ -2,10 +2,10 @@
 llmworkbook package initialization.
 """
 
-from .config import LLMConfig
-from .runner import LLMRunner
-from .integrator import LLMDataFrameIntegrator
-from .wrappers import WrapDataFrame, WrapDataArray, WrapPromptList
+from config import LLMConfig
+from runner import LLMRunner
+from integrator import LLMDataFrameIntegrator
+from wrappers import WrapDataFrame, WrapDataArray, WrapPromptList
 
 __all__ = [
     "LLMConfig",

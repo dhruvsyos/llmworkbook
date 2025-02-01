@@ -5,7 +5,7 @@ Configuration module for LLMs.
 from typing import Optional, Dict
 
 
-class LLMConfig: # pylint: disable=too-few-public-methods
+class LLMConfig:  # pylint: disable=too-few-public-methods
     """
     LLM configuration object to store various LLM parameters.
     """

@@ -1,4 +1,6 @@
+# pylint: skip-file
 from llmworkbook import LLMConfig
+
 
 def test_llm_config_initialization():
     # Arrange
@@ -19,8 +21,9 @@ def test_llm_config_initialization():
     assert config.options["temperature"] == 0.7
     assert config.options["max_tokens"] == 1000
 
+
 def test_llm_config_to_dict():
-    #Arrange
+    # Arrange
     config = LLMConfig(
         provider="openai",
         system_prompt="You are a helpful assistant.",
@@ -32,12 +35,11 @@ def test_llm_config_to_dict():
     )
     results = config.to_dict()
 
-    #Assert
+    # Assert
     assert results["provider"] == "openai"
     assert results["system_prompt"] == "You are a helpful assistant."
     assert results["options"] == {
-            "model_name": "gpt-3.5-turbo",
-            "temperature": 0.7,
-            "max_tokens": 1000,
-        }
-
+        "model_name": "gpt-3.5-turbo",
+        "temperature": 0.7,
+        "max_tokens": 1000,
+    }

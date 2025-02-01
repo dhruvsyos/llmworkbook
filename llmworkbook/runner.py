@@ -47,7 +47,7 @@ class LLMRunner:
         )
 
         try:
-            return completion.choices[0]["message"]
+            return completion.choices[0].message
         except (KeyError, IndexError):
             return str(completion)
 

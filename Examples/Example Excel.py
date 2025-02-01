@@ -3,7 +3,6 @@ Example usage script for WrapDataFrame, WrapDataArray, and WrapPromptList.
 """
 
 import pandas as pd
-import numpy as np
 from llmworkbook import LLMConfig, LLMRunner, LLMDataFrameIntegrator, WrapDataFrame
 from dotenv import load_dotenv
 

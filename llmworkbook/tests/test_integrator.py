@@ -1,8 +1,7 @@
 from llmworkbook import LLMDataFrameIntegrator, LLMRunner
 import pandas as pd
 import pytest
-from unittest.mock import AsyncMock, MagicMock, patch
-import asyncio
+from unittest.mock import AsyncMock, MagicMock
 
 @pytest.fixture
 def sample_dataframe():
@@ -59,7 +58,7 @@ def test_add_llm_responses_with_row_filter(sample_dataframe, mock_runner):
     assert "llm_response" in updated_df.columns
     assert updated_df.loc[0, "llm_response"] == "Response to: Hello, world!"
     assert pd.isna(updated_df.loc[1, "llm_response"])
-    assert updated_df.loc[2, "llm_response"] == None  # Empty prompt should remain None
+    assert updated_df.loc[2, "llm_response"] is None  # Empty prompt should remain None
     assert pd.isna(updated_df.loc[3, "llm_response"])
 
     # Ensure only 2 calls were made
@@ -99,4 +98,5 @@ def test_async_function(sample_dataframe, mock_runner):
         response_column="llm_response",
         async_mode=True
     )
+    output_df
 

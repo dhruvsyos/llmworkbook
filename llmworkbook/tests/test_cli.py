@@ -96,7 +96,6 @@ def test_cli_wrap_prompts(sample_prompts, tmp_path):
 
 def test_cli_llm_connection(mocker):
     """Test the LLM connection check via the CLI."""
-    mock_llm_runner = mocker.patch("llmworkbook.LLMRunner.run_sync", return_value="Test Successful!")
 
     result = subprocess.run(
         ["llmworkbook", "test", "fake_api_key"],

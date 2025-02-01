@@ -57,7 +57,7 @@ fi
 # Run Pylint
 print_separator
 echo -e "${CYAN}Running Pylint on Python files in '$TARGET_DIR'...${RESET}"
-poetry run pylint "$TARGET_DIR"/**/*.py > pylint_report.txt
+poetry run pylint "$TARGET_DIR"/**/*.py
 if [ $? -ne 0 ]; then
   PYLINT_STATUS=1
   echo -e "${RED}Pylint encountered errors. Check pylint_report.txt.${RESET}"

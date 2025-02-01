@@ -28,7 +28,7 @@ jobs:
       # Step 4: Install Dependencies
       - name: Install Project Dependencies
         run: |
-          poetry install --no-root
+          poetry install --all-groups
           poetry run pip install pip-audit
 
       # Step 5: Run Quality Check Script

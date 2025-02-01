@@ -29,7 +29,7 @@ jobs:
       - name: Install Project Dependencies
         run: poetry install --with dev,test
       - name: Run tests
-        run: poetry run coverage run --source='$CODE_ROOT/' --omit="llmworkbook/tests/*" -m pytest
+        run: poetry run coverage run --source=llmworkbook --omit="llmworkbook/tests/*" -m pytest
       - name: Generate test coverage report
         run: poetry run coverage xml coverage.xml
         if: github.event_name == 'pull_request'

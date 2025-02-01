@@ -1,17 +1,15 @@
 # **LLMWorkbook**
 
-**LLMWorkbook** is a Python package designed to seamlessly integrate Large Language Models (LLMs) into your workflow with DataFrames/Arrays. This package allows you to easily configure an LLM, send prompts **row-wise** from a DataFrame/Arrays, and store responses back in the DataFrame with minimal effort.
+"Effortlessly harness the power of LLMs on Excel and DataFrames—seamless, smart, and efficient!"
+
+**LLMWorkbook** is a Python package designed to seamlessly integrate Large Language Models (LLMs) into your workflow with tabular data, be it Excel, CSV, DataFrames/Arrays. This package allows you to easily configure an LLM, send prompts **row-wise** from any tabular datasets, and store responses back in the DataFrame with minimal effort.
 
 ---
 
 ## **Features**
-
-- Configure LLM providers (e.g., OpenAI) using a simple configuration object.
-- Asynchronous and synchronous support for LLM calls.
-- Easily map LLM responses to a specific column in a pandas DataFrame.
-- Built-in wrapper utilities to prepare data for LLM consumption.
-- Extendable architecture for multiple LLM providers.
-- Built-in utilities for preprocessing and handling API limits.
+- Easily map LLM responses to a specific column in a pandas DataFrame, Excel, CSV.
+- Run list of prompts easily.
+- Get started with easy to follow Examples
 
 ---
 

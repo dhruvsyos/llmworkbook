@@ -2,12 +2,23 @@
 name = "llmworkbook"
 version = "0.1.2"
 description = "\"LLM + Excel or DataFrame integration package \""
-authors = ["dhruv <dhruv166arya@gmail.com>"]
-license = "\"MIT\""
+authors = [{ name = "Dhruv", email = "dhruv166arya@gmail.com" }]
+license = { file = "LICENSE" }
 readme = "README.md"
-homepage = "https://github.com/dhruvsyos/llmworkbook.git"
-repository = "https://github.com/dhruvsyos/llmworkbook.git"
 keywords = ["LLM", "DataFrame", "Excel Workbook", "Excel", "CSV", "OpenAI" ,  "Python", "async"]
+classifiers = [
+"Intended Audience :: Developers",
+"License :: Freeware",
+"Natural Language :: English",
+"Programming Language :: Python :: 3.11",
+"Programming Language :: Python :: 3.12",
+"Topic :: Scientific/Engineering :: Artificial Intelligence",
+"Topic :: Communications :: Chat",
+"Topic :: Text Processing :: General",
+"Topic :: Utilities",
+"Topic :: Software Development :: Build Tools",
+"Topic :: Software Development :: Libraries :: Python Modules",
+]
 
 [tool.poetry.scripts]
 # command_name = module_for_handler : function_for_handler
@@ -38,3 +49,10 @@ pytest-asyncio = "^0.25.2"
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[project.urls]
+homepage = "https://github.com/aryadhruv/LLMWorkbook"
+repository = "https://github.com/aryadhruv/LLMWorkbook"
+documentation = "https://github.com/aryadhruv/LLMWorkbook"
+"Bug Tracker" = "https://github.com/aryadhruv/LLMWorkbook/issues"
+issues = "https://github.com/aryadhruv/LLMWorkbook/issues"

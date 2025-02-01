@@ -1,6 +1,8 @@
+# pylint: skip-file
 import pytest
 from unittest.mock import AsyncMock, patch
 from llmworkbook import LLMRunner, LLMConfig
+
 
 @pytest.fixture
 def mock_config():
@@ -32,15 +34,17 @@ async def test_run(mock_config):
 
     # Mock _call_llm_openai
     runner._call_llm_openai = AsyncMock(return_value="LLM response for prompt")
-    
+
     # Call run
     result = await runner.run("Explain Newton's first law in simple terms.")
-    
+
     # Assert the result
     assert result == "LLM response for prompt"
-    
+
     # Verify the internal method call
-    runner._call_llm_openai.assert_called_once_with("Explain Newton's first law in simple terms.")
+    runner._call_llm_openai.assert_called_once_with(
+        "Explain Newton's first law in simple terms."
+    )
 
 
 def test_run_sync(mock_config):
@@ -50,13 +54,13 @@ def test_run_sync(mock_config):
 
     # Mock the async run method
     runner.run = AsyncMock(return_value="LLM response for prompt")
-    
+
     # Call run_sync
     result = runner.run_sync("Explain Newton's first law in simple terms.")
-    
+
     # Assert the result
     assert result == "LLM response for prompt"
-    
+
     # Verify the run method call
     runner.run.assert_called_once_with("Explain Newton's first law in simple terms.")
 
@@ -66,6 +70,7 @@ async def test_provider():
     """Test handling of an unimplemented provider."""
     with pytest.raises(NotImplementedError):
         await LLMRunner(config=LLMConfig(provider="llmprovider")).run("prompt")
+
 
 @pytest.mark.asyncio
 async def test_call_llm_openai(mock_config):
@@ -80,7 +85,10 @@ async def test_call_llm_openai(mock_config):
     mock_response.choices[0].message.content = "Mocked response text"
 
     # Patch the specific OpenAI method instead of the entire class
-    with patch("openai.resources.chat.completions.Completions.create", return_value=mock_response) as mock_create:
+    with patch(
+        "openai.resources.chat.completions.Completions.create",
+        return_value=mock_response,
+    ) as mock_create:
         # Call the async function
         response = await runner._call_llm_openai("Test prompt")
 
@@ -90,7 +98,7 @@ async def test_call_llm_openai(mock_config):
             model="gpt-4o-mini",
             messages=[
                 {"role": "system", "content": mock_config.system_prompt},
-                {"role": "user", "content": "Test prompt"}
+                {"role": "user", "content": "Test prompt"},
             ],
             temperature=mock_config.options["temperature"],
         )

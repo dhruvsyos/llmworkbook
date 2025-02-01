@@ -1,12 +1,13 @@
+# pylint: skip-file
 from ..utils import sanitize_prompt
 
 
 def test_sanitize_prompt():
-    #Arrange
+    # Arrange
     sample_prompt = "This is a sample string  "
 
-    #Action
+    # Action
     sanitized_prompt = sanitize_prompt(sample_prompt)
 
-    #Assert
-    assert sanitized_prompt=="This is a sample string"
+    # Assert
+    assert sanitized_prompt == "This is a sample string"

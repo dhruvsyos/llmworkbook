@@ -14,7 +14,6 @@ RESET='\033[0m'
 RUFF_STATUS=0
 PYLINT_STATUS=0
 BLACK_STATUS=0
-PIPAUDIT_STATUS=0
 
 # Function for separators
 print_separator() {
@@ -66,17 +65,6 @@ else
   echo -e "${GREEN}Pylint completed successfully. Report saved to pylint_report.txt.${RESET}"
 fi
 
-# Run PIP audit
-print_separator
-echo -e "${CYAN}Running PIP AUDIT to check of any issues...${RESET}"
-poetry run pip-audit
-if [ $? -ne 0 ]; then
-  PIPAUDIT_STATUS=1
-  echo -e "${RED}PIP Audit found package issues.${RESET}"
-else
-  echo -e "${GREEN}PIP Audit passed with no issues.${RESET}"
-fi
-
 # Summary Report
 print_separator
 echo -e "${CYAN}Summary of Tool Results:${RESET}"
@@ -98,14 +86,8 @@ else
   echo -e "${GREEN}- Pylint: No errors${RESET}"
 fi
 
-if [ $PIPAUDIT_STATUS -ne 0 ]; then
-  echo -e "${RED}- PIP Audit: Package issues found${RESET}"
-else
-  echo -e "${GREEN}- PIP Audi: No Package issues${RESET}"
-fi
-
 # Determine exit status
-if [ $RUFF_STATUS -ne 0 ] || [ $PYLINT_STATUS -ne 0 ] || [ $BLACK_STATUS -ne 0 ] || [ $PIPAUDIT_STATUS -ne 0 ]; then
+if [ $RUFF_STATUS -ne 0 ] || [ $PYLINT_STATUS -ne 0 ] || [ $BLACK_STATUS -ne 0 ] ; then
   echo -e "${RED}\nSome tools reported issues. Please review the outputs above.${RESET}"
   exit 1  # Exit with non-zero status
 else

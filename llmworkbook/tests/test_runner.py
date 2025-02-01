@@ -1,7 +1,6 @@
 import pytest
 from unittest.mock import AsyncMock, patch
 from llmworkbook import LLMRunner, LLMConfig
-from openai import OpenAI
 
 @pytest.fixture
 def mock_config():
@@ -76,13 +75,14 @@ async def test_call_llm_openai(mock_config):
 
     # Mock response data format from OpenAI API
     mock_response = AsyncMock()
-    mock_response.choices = [{"message":"Mocked response text"}]
+    mock_response.choices = [AsyncMock()]
+    mock_response.choices[0].message = AsyncMock()
+    mock_response.choices[0].message.content = "Mocked response text"
 
     # Patch the specific OpenAI method instead of the entire class
     with patch("openai.resources.chat.completions.Completions.create", return_value=mock_response) as mock_create:
         # Call the async function
         response = await runner._call_llm_openai("Test prompt")
-
 
         # Assertions to check the behavior
         assert response == "Mocked response text"

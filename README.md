@@ -1,8 +1,5 @@
 # **LLMWorkbook**
 
-> [!WARNING]
-> This repo is in development and may not be secure. Use is at your own risk
-
 **LLMWorkbook** is a Python package designed to seamlessly integrate Large Language Models (LLMs) into your workflow with DataFrames/Arrays. This package allows you to easily configure an LLM, send prompts **row-wise** from a DataFrame/Arrays, and store responses back in the DataFrame with minimal effort.
 
 ---
@@ -91,11 +88,54 @@ Example code is available in the Git Repository for easy reference.
 
 ---
 
+### **CLI Usage**
+
+`LLMWorkbook` provides a command-line interface (**CLI**) for wrapping data and testing LLM connectivity. This makes it easy to process DataFrames, arrays, and prompt lists without writing additional code.
+
+#### **Installation**
+The CLI is installed automatically when you install `LLMWorkbook` via Poetry:
+
+```bash
+poetry install
+```
+
+Once installed, you can use the `llmwrap` command.
+
+#### **Available Commands**
+```bash
+llmworkbook wrap_dataframe <input_file> <output_file> <prompt_column> <data_columns>
+llmworkbook wrap_array <input_file> <output_file> <prompt_index> <data_indices>
+llmworkbook wrap_prompts <prompts_file> <output_file>
+llmworkbook test <api_key> [--model_name gpt-3.5-turbo]
+```
+
+#### **Examples**
+- **Wrap a DataFrame:**
+  ```bash
+  llmworkbook wrap_dataframe sample.xlsx wrapped_output.csv prompt "Reviews,Language"
+  ```
+
+- **Wrap a 2D Array (JSON file input):**
+  ```bash
+  llmworkbook wrap_array array_data.json wrapped_output.csv 0 1,2
+  ```
+
+- **Wrap a List of Prompts:**
+  ```bash
+  llmworkbook wrap_prompts prompts.txt wrapped_output.csv
+  ```
+
+- **Test LLM Connectivity:**
+  ```bash
+  llmworkbook test YOUR_API_KEY --model_name gpt-4
+  ```
+
+This CLI allows you to quickly process data and validate your LLM connection without modifying code. 🚀
+
 ## **Future Roadmap**
 
 - Add support for more LLM providers (Azure OpenAI, Cohere, etc.).
+- Add an interface frontend for low code applications.
 - Implement rate-limiting and token usage tracking.
 - Add streaming response handling.
-- Add CLI method for developers.
-- Add an interface frontend for low code applications.
 - Summarized history persisted across session to provide quick context for next session.

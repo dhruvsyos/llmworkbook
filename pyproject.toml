@@ -9,6 +9,10 @@ homepage = "https://github.com/dhruvsyos/llmworkbook.git"
 repository = "https://github.com/dhruvsyos/llmworkbook.git"
 keywords = ["LLM", "DataFrame", "Excel Workbook", "Excel", "CSV", "OpenAI" ,  "Python", "async"]
 
+[tool.poetry.scripts]
+# command_name = module_for_handler : function_for_handler
+llmworkbook = 'llmworkbook.cli.cli:main'
+
 [tool.poetry.dependencies]
 python = "^3.11"
 pandas = "^2.2.3"

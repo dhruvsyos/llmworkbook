@@ -33,6 +33,7 @@ jobs:
       # Step 5: Run Quality Check Script
       - name: Run Quality Check Script
         run: |
+          poetry add pandas numpy
           chmod +x scripts/code_quality_check.sh
           poetry run ./scripts/code_quality_check.sh llmworkbook
         shell: bash

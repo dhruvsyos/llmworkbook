@@ -1,7 +1,6 @@
 # **LLMWorkbook**
 
 [![CodeQL Advanced](https://github.com/aryadhruv/LLMWorkbook/actions/workflows/codeql.yml/badge.svg)](https://github.com/aryadhruv/LLMWorkbook/actions/workflows/codeql.yml)
-[![CodeQL Advanced](https://github.com/aryadhruv/LLMWorkbook/actions/workflows/codeql.yml/badge.svg)](https://github.com/aryadhruv/LLMWorkbook/actions/workflows/codeql.yml)
 [![Quality Check](https://github.com/aryadhruv/LLMWorkbook/actions/workflows/Quality%20Check.yml/badge.svg)](https://github.com/aryadhruv/LLMWorkbook/actions/workflows/Quality%20Check.yml)
 [![test](https://github.com/aryadhruv/LLMWorkbook/actions/workflows/test.yml/badge.svg)](https://github.com/aryadhruv/LLMWorkbook/actions/workflows/test.yml)
 <img src="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json" alt="Ruff linter" href="https://github.com/astral-sh/ruff" />

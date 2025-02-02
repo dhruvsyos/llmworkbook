@@ -5,24 +5,29 @@ description = "Effortlessly harness the power of LLMs on Excel and DataFrames—
 authors = ["dhruv <dhruv166arya@gmail.com>"]
 license = "MIT"
 readme = "README.md"
-keywords = ["LLM", "DataFrame", "Excel Workbook", "Excel", "CSV", "OpenAI" ,  "Python", "async"]
+keywords = ["LLM", "DataFrame", "Excel Workbook", "Excel", "CSV", "OpenAI", "Python", "async"]
 classifiers = [
-"Intended Audience :: Developers",
-"License :: Freeware",
-"Natural Language :: English",
-"Programming Language :: Python :: 3.11",
-"Programming Language :: Python :: 3.12",
-"Topic :: Scientific/Engineering :: Artificial Intelligence",
-"Topic :: Communications :: Chat",
-"Topic :: Text Processing :: General",
-"Topic :: Utilities",
-"Topic :: Software Development :: Build Tools",
-"Topic :: Software Development :: Libraries :: Python Modules",
+    "Intended Audience :: Developers",
+    "License :: Freeware",
+    "Natural Language :: English",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Communications :: Chat",
+    "Topic :: Text Processing :: General",
+    "Topic :: Utilities",
+    "Topic :: Software Development :: Build Tools",
+    "Topic :: Software Development :: Libraries :: Python Modules",
 ]
 
+[tool.poetry.urls]
+Homepage = "https://github.com/aryadhruv/LLMWorkbook"
+Repository = "https://github.com/aryadhruv/LLMWorkbook"
+Documentation = "https://github.com/aryadhruv/LLMWorkbook"
+Issues = "https://github.com/aryadhruv/LLMWorkbook/issues"
+
 [tool.poetry.scripts]
-# command_name = module_for_handler : function_for_handler
-llmworkbook = 'llmworkbook.cli.cli:main'
+llmworkbook = "llmworkbook.cli.cli:main"
 
 [tool.poetry.dependencies]
 python = "^3.11"
@@ -49,9 +54,3 @@ pytest-asyncio = "^0.25.2"
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
-
-[project.urls]
-Homepage = "https://github.com/aryadhruv/LLMWorkbook"
-Repository = "https://github.com/aryadhruv/LLMWorkbook"
-Documentation = "https://github.com/aryadhruv/LLMWorkbook"
-Issues = "https://github.com/aryadhruv/LLMWorkbook/issues"

@@ -24,7 +24,6 @@ Install the package from GitHub:
 ---
 
 ## **Quick Start**
-Not updated regularly. Please check examples for more detailed code samples.
 
 ---
 
@@ -33,7 +32,7 @@ Not updated regularly. Please check examples for more detailed code samples.
 `LLMWorkbook` provides wrapper utilities to prepare various data formats for LLM consumption. These utilities transform input data into a format suitable for LLM processing, ensuring consistency and compatibility.
 These wrapper methods can handle popular data sources like Excel (xlsx), CSV, Pandas DataFrames, multi dimensional arrays.
 
-*See Examples for details.*
+*See Examples for details. - [Github - Examples](https://github.com/aryadhruv/LLMWorkbook/tree/main/Examples)*
 ---
 
 ### **1. Import the Package**
@@ -137,3 +136,13 @@ This CLI allows you to quickly process data and validate your LLM connection wit
 - Implement rate-limiting and token usage tracking.
 - Add streaming response handling.
 - Summarized history persisted across session to provide quick context for next session.
+
+
+## **Links**
+
+[Homepage](https://github.com/aryadhruv/LLMWorkbook)
+[Repository](https://github.com/aryadhruv/LLMWorkbook)
+[Documentation](https://github.com/aryadhruv/LLMWorkbook)
+[Bug Tracker](https://github.com/aryadhruv/LLMWorkbook/issues)
+[Issues](https://github.com/aryadhruv/LLMWorkbook/issues)
+

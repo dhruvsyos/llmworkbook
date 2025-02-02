@@ -1,5 +1,11 @@
 # **LLMWorkbook**
 
+[![CodeQL Advanced](https://github.com/aryadhruv/LLMWorkbook/actions/workflows/codeql.yml/badge.svg)](https://github.com/aryadhruv/LLMWorkbook/actions/workflows/codeql.yml)
+[![Quality Check](https://github.com/aryadhruv/LLMWorkbook/actions/workflows/Quality%20Check.yml/badge.svg)](https://github.com/aryadhruv/LLMWorkbook/actions/workflows/Quality%20Check.yml)
+[![test](https://github.com/aryadhruv/LLMWorkbook/actions/workflows/test.yml/badge.svg)](https://github.com/aryadhruv/LLMWorkbook/actions/workflows/test.yml)
+<img src="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json" alt="Ruff linter" href="https://github.com/astral-sh/ruff" />
+<img src="https://img.shields.io/badge/linting-pylint-yellowgreen" alt="Pylint linter" href="https://github.com/pylint-dev/pylint" />  <img src="https://img.shields.io/badge/code%20style-black-000000.svg" alt="Code Style" href="https://github.com/ambv/black" />
+
 "Effortlessly harness the power of LLMs on Excel and DataFrames—seamless, smart, and efficient!"
 
 **LLMWorkbook** is a Python package designed to seamlessly integrate Large Language Models (LLMs) into your workflow with tabular data, be it Excel, CSV, DataFrames/Arrays. This package allows you to easily configure an LLM, send prompts **row-wise** from any tabular datasets, and store responses back in the DataFrame with minimal effort.
@@ -24,7 +30,6 @@ Install the package from GitHub:
 ---
 
 ## **Quick Start**
-Not updated regularly. Please check examples for more detailed code samples.
 
 ---
 
@@ -33,7 +38,7 @@ Not updated regularly. Please check examples for more detailed code samples.
 `LLMWorkbook` provides wrapper utilities to prepare various data formats for LLM consumption. These utilities transform input data into a format suitable for LLM processing, ensuring consistency and compatibility.
 These wrapper methods can handle popular data sources like Excel (xlsx), CSV, Pandas DataFrames, multi dimensional arrays.
 
-*See Examples for details.*
+*See Examples for details. - [Github - Examples](https://github.com/aryadhruv/LLMWorkbook/tree/main/Examples)*
 ---
 
 ### **1. Import the Package**
@@ -137,3 +142,13 @@ This CLI allows you to quickly process data and validate your LLM connection wit
 - Implement rate-limiting and token usage tracking.
 - Add streaming response handling.
 - Summarized history persisted across session to provide quick context for next session.
+
+
+## **Links**
+
+[Homepage](https://github.com/aryadhruv/LLMWorkbook)
+[Repository](https://github.com/aryadhruv/LLMWorkbook)
+[Documentation](https://github.com/aryadhruv/LLMWorkbook)
+[Bug Tracker](https://github.com/aryadhruv/LLMWorkbook/issues)
+[Issues](https://github.com/aryadhruv/LLMWorkbook/issues)
+

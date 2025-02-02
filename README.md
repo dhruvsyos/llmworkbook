@@ -7,24 +7,6 @@
 <img src="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json" alt="Ruff linter" href="https://github.com/astral-sh/ruff" />
 <img src="https://img.shields.io/badge/linting-pylint-yellowgreen" alt="Pylint linter" href="https://github.com/pylint-dev/pylint" />  <img src="https://img.shields.io/badge/code%20style-black-000000.svg" alt="Code Style" href="https://github.com/ambv/black" />
 
-
-<p>
-   <img src="https://github.com/Penguin-International-Gurgaon/PenguinOne/actions/workflows/Development%20Deployment.yml/badge.svg" alt="Development Status" />
-   <img src="https://github.com/Penguin-International-Gurgaon/PenguinOne/actions/workflows/Production%20Deveployment.yml/badge.svg" alt="Production Status" />
-
-   <img src="https://github.com/Penguin-International-Gurgaon/PenguinOne/actions/workflows/Quality%20Check.yml/badge.svg" alt="https://github.com/Penguin-International-Gurgaon/PenguinOne/actions/workflows/Quality%20Check.yml" />
-
-   <img src="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json" alt="Ruff linter" href="https://github.com/astral-sh/ruff" />
-
-   <img src="https://img.shields.io/badge/linting-pylint-yellowgreen" alt="Pylint linter" href="https://github.com/pylint-dev/pylint" />  
-
-   <img src="https://img.shields.io/badge/code%20style-black-000000.svg" alt="Code Style" href="https://github.com/ambv/black" />
-
-
-</p>
-
-
-
 "Effortlessly harness the power of LLMs on Excel and DataFrames—seamless, smart, and efficient!"
 
 **LLMWorkbook** is a Python package designed to seamlessly integrate Large Language Models (LLMs) into your workflow with tabular data, be it Excel, CSV, DataFrames/Arrays. This package allows you to easily configure an LLM, send prompts **row-wise** from any tabular datasets, and store responses back in the DataFrame with minimal effort.

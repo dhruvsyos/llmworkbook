@@ -1,5 +1,10 @@
 # **LLMWorkbook**
 
+[![CodeQL Advanced](https://github.com/aryadhruv/LLMWorkbook/actions/workflows/codeql.yml/badge.svg)](https://github.com/aryadhruv/LLMWorkbook/actions/workflows/codeql.yml)
+[![Quality Check](https://github.com/aryadhruv/LLMWorkbook/actions/workflows/Quality%20Check.yml/badge.svg)](https://github.com/aryadhruv/LLMWorkbook/actions/workflows/Quality%20Check.yml)
+[![test](https://github.com/aryadhruv/LLMWorkbook/actions/workflows/test.yml/badge.svg)](https://github.com/aryadhruv/LLMWorkbook/actions/workflows/test.yml)
+
+
 "Effortlessly harness the power of LLMs on Excel and DataFrames—seamless, smart, and efficient!"
 
 **LLMWorkbook** is a Python package designed to seamlessly integrate Large Language Models (LLMs) into your workflow with tabular data, be it Excel, CSV, DataFrames/Arrays. This package allows you to easily configure an LLM, send prompts **row-wise** from any tabular datasets, and store responses back in the DataFrame with minimal effort.
